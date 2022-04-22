@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://m6x7.tres" type="DynamicFont" id=1]
+[ext_resource path="res://title_screen.gd" type="Script" id=2]
+
+[node name="Title" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1022.0
+margin_bottom = 612.0
+color = Color( 0.341176, 0.105882, 0.0235294, 1 )
+
+[node name="Title" type="RichTextLabel" parent="."]
+margin_left = 145.0
+margin_top = 63.0
+margin_right = 297.0
+margin_bottom = 96.0
+rect_scale = Vector2( 5, 5 )
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Cheese Climb
+"
+scroll_active = false
+
+[node name="Title2" type="RichTextLabel" parent="."]
+margin_left = 163.0
+margin_top = 213.0
+margin_right = 477.0
+margin_bottom = 297.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]You can only double jump if
+you have cheese![/center]"
+text = "You can only double jump if
+you have cheese!"
+
+[node name="Title3" type="RichTextLabel" parent="."]
+margin_left = -263.0
+margin_top = 390.0
+margin_right = 51.0001
+margin_bottom = 474.0
+rect_scale = Vector2( 5, 5 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Space to start[/center]"
+text = "Space to start"
