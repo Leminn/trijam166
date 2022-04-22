@@ -1,63 +1,28 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://cheese.png" type="Texture" id=2]
-[ext_resource path="res://m6x7.tres" type="DynamicFont" id=3]
-[ext_resource path="res://cheeseplat.png" type="Texture" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 3.5 )
+[ext_resource path="res://PlatSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI.gd" type="Script" id=4]
+[ext_resource path="res://platform.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
 
-[node name="UI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="GameBG" type="ColorRect" parent="UI"]
-margin_right = 768.0
-margin_bottom = 617.0
-color = Color( 0.164706, 0.0666667, 0.0313726, 1 )
-
-[node name="StatusGUI" type="ColorRect" parent="UI"]
-margin_left = 768.0
-margin_right = 1024.0
-margin_bottom = 617.0
-color = Color( 0, 0, 0, 1 )
-
-[node name="Sprite" type="Sprite" parent="UI/StatusGUI"]
-position = Vector2( 100, 302 )
-rotation = 1.5708
-scale = Vector2( 15.5312, 13.4134 )
-texture = ExtResource( 2 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/StatusGUI"]
-margin_left = 41.0
-margin_top = 74.0
-margin_right = 141.0
-margin_bottom = 174.0
-rect_scale = Vector2( 2.38955, 2.224 )
-custom_fonts/mono_font = ExtResource( 3 )
-custom_fonts/bold_italics_font = ExtResource( 3 )
-custom_fonts/italics_font = ExtResource( 3 )
-custom_fonts/bold_font = ExtResource( 3 )
-custom_fonts/normal_font = ExtResource( 3 )
-text = "CHEESE"
+[node name="UI" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 448, 267 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 302 )
 current = true
 
-[node name="Platform" type="KinematicBody2D" parent="."]
-position = Vector2( 448, 589 )
-scale = Vector2( 5, 5 )
+[node name="Platform" parent="." instance=ExtResource( 5 )]
+position = Vector2( 448, 346 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 1 )
-one_way_collision = true
+[node name="PlatSpawner" parent="." instance=ExtResource( 2 )]
+platform_scene = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="Platform"]
-texture = ExtResource( 4 )
+[connection signal="cheese_eaten" from="Player" to="UI" method="_on_Player_cheese_eaten"]
+[connection signal="cheese_repair" from="Player" to="UI" method="_on_Player_cheese_repair"]
