@@ -10,7 +10,8 @@ config_version=4
 
 [application]
 
-config/name="trijam166"
+config/name="Cheese Climb"
+config/description="You can only double jump if you have cheese"
 run/main_scene="res://title_screen.tscn"
 config/icon="res://icon.png"
 
